@@ -1,0 +1,46 @@
+{% load static %}
+<!doctype html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        {% if title %}
+            <title>GeekText Bookstore- {{ title }}</title>
+        {% else %}
+            <title>GeekText Bookstore</title>
+        {% endif %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'bookstore/css/main.css' %}">
+        {% include 'bookstore/css.html'%}
+
+        {% block base_head %}{% endblock %}
+    </head>
+    <body>
+        {% include 'bookstore/navbar.html' %}
+            {% block home_content %} {% endblock %}
+            
+
+            {% block register_content %} 
+
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+
+          
+            {% endblock register_content %}
+            
+            
+
+
+
+
+            {% block listContent %} {% endblock %}
+        {% include 'bookstore/js.html'%}
+    </body>
+</html>

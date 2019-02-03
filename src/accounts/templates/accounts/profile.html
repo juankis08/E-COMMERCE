@@ -1,0 +1,18 @@
+{% extends "bookstore/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block register_content %}
+<div class="container-fluid col-md-4">
+    <div class="content-section">
+        <div class="media">
+        <img class="rounded-circle account-img" src="{{ accounts.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ accounts.username }}</h2>
+            <p class="text-secondary">{{ accounts.email }}</p>
+        </div>
+        </div>
+        <!-- FORM HERE -->
+    </div>
+</div>
+{% endblock register_content %}
