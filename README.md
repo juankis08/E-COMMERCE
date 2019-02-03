@@ -2,15 +2,15 @@
 Web application bookstore
 
 <h6>Helpful Installs</h6>
-<ol>
+<ul>
   pip install Django==2.1.5
   pip install django-crispy-forms
-</ol>
+</ul>
 
  <h6>Helpful Commands</h6> 
-<ol>
+<ul>
   <ls>ls python manage.py runserver</ls>
   <ls>python manage.py makemigrations</ls>
   <ls>python manage.py migrate</ls>
   <ls>python manage.py createsuperuser</ls>
-</ol>
+</ul>
