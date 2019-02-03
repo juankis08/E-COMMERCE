@@ -5,10 +5,12 @@ Web application bookstore
 <ul>
   <li>pip install Django==2.1.5</li>
   <li>pip install django-crispy-forms</li>
+  <li>pip install Pillow</li>
 </ul>
 
  <h6>Helpful Commands</h6> 
 <ul>
+  <li>How to kill ports: ( sudo lsof -t -i tcp:8000 | xargs kill -9 )</li>
   <li>ls python manage.py runserver</li>
   <li>python manage.py makemigrations</li>
   <li>python manage.py migrate</li>
