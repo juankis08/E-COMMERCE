@@ -1,6 +1,12 @@
 # CEN4010
 Web application bookstore
 
+<h6>How to create the virtual env inside of the project folder</h6>
+<ul>
+<li>virtualenv -p python3 .</li>
+<li>source bin/activate</li>
+</ul>
+
 <h6>Helpful Installs</h6>
 <ul>
   <li>pip install Django==2.1.5</li>
