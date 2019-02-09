@@ -1,0 +1,103 @@
+{% extends "bookstore/base.html" %}
+{% block title %}{% if q %}{{ q }}{% else %}All Books{% endif %} | {{ block.super }}{% endblock %}
+{% load static from staticfiles %}
+
+
+
+{% block home_content %}
+
+<div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3 ">
+
+      <h5 class="card-header">Refine Search</h5>
+      <div class="list-group">
+        <div class="form-group input-group-sm mb-3">
+            <label for="exampleDropdownFormEmail1">Title</label>
+            <input type="title" class="form-control" id="exampleDropdownFormEmail1" placeholder="title">
+        </div>
+        <div class="form-group input-group-sm mb-3">
+            <label for="exampleDropdownFormEmail1">Author</label>
+            <input type="title" class="form-control" id="exampleDropdownFormEmail1" placeholder="Name">
+        </div>
+        <div class="form-group input-group-sm mb-3">
+            <label for="exampleDropdownFormEmail1">Genre</label>
+            <input type="title" class="form-control" id="exampleDropdownFormEmail1" placeholder="genre">
+        </div>
+        <div class="form-group input-group-sm mb-3">
+            <label for="exampleDropdownFormEmail1">Price</label>
+
+        </div>
+
+        <!-- <div class="form-group">
+            <label for="exampleDropdownFormEmail1">Genre</label>
+            <input type="title" class="form-control" id="exampleDropdownFormEmail1" placeholder="title">
+        </div> -->
+        <!-- <a href="javascript:void(0)" class="list-group-item">Title</a>
+        <a href="javascript:void(0)" class="list-group-item">Author</a>
+        <a href="javascript:void(0)" class="list-group-item">Genre</a>
+        <a href="javascript:void(0)" class="list-group-item">Price</a> -->
+        <a href="javascript:void(0)" class="list-group-item">Rating</a>
+        <a href="#" class="btn btn-primary">Go</a>
+
+    </div>
+
+</div>
+<div class="col-lg-9">
+<br><br><br>
+
+
+
+          <div class="row">
+{% for i in book_by_page %}
+            <div class="col-lg-4 col-md-6 mb-4 {{i.category}}">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src={{i.image.url}} alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="/books/details/{{i.id}}">{{i.title}}</a>
+                  </h4>
+
+                  <h5>${{i.price}}</h5>
+                  <p class="card-text"></p>
+                </div>
+                <div class="card-footer">
+                 <a href="/books/details/{{i.id}}"> Details</a>
+                 <a href="#" class="btn btn-primary float-right"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+              </div>
+            </div>
+{% endfor %}
+          </div>
+          <!-- /.row -->
+
+
+    {% if book_by_page.has_other_pages %}
+  <ul class="pagination">
+    {% if book_by_page.has_previous %}
+      <li><a href="?page={{ book_by_page.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in book_by_page.paginator.page_range %}
+      {% if book_by_page.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if book_by_page.has_next %}
+      <li><a href="?page={{ book_by_page.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+        </div>
+      </div></div>
+
+{% endblock %}

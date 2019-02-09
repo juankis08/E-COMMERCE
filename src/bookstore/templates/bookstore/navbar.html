@@ -1,6 +1,6 @@
 {% url 'login' as login_url %}
 {% url 'register' as register_url %}
-{% load static %} 
+{% load static %}
 <!-- <div class="container"> -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <div class="container">
@@ -9,7 +9,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+        {% include 'search/snippets/search-form.html' %}
         <li class="nav-item dropdown">
                 <a class="nav-item dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     All Categories
@@ -23,7 +23,7 @@
         </li>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav justify-content-end">
- 
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
@@ -34,7 +34,7 @@
                         Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        
+
                         {% if user.is_authenticated %}
 
                             <div class="dropdown-divider"></div>
@@ -43,14 +43,14 @@
                                 <a class="dropdown-item" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="btn btn-primary btn-sm btn-info btn-block" href="{% url 'logout' %}" role="button">Sign out</a>
-                            
+
 
                         {% else %}
                             <a class="btn btn-primary btn-sm btn-warning btn-block" href="{% url 'login' %}" role="button">Sign In</a>
                             <a class="btn btn-primary btn-sm btn-success btn-block" href="{% url 'register' %}" role="button">Register</a>
-                            
+
                         {% endif %}
-               
+
                         <!-- <a class="dropdown-item" href="#">Loguot</a> -->
                     </div>
                 </li>
