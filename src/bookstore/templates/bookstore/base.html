@@ -19,18 +19,20 @@
     </head>
     <body>
         {% include 'bookstore/navbar.html' %}
+{% if messages %}
+            <div class="alert alert-info alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+    {% endif %}
             {% block home_content %} {% endblock %}
             
 
             {% block register_content %} 
 
-            {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-                </div>
-            {% endfor %}
-            {% endif %}
+
 
           
             {% endblock register_content %}
