@@ -10,7 +10,7 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save() 
             username = form.cleaned_data.get('username')
             messages.success(request, f'The account for {username} has been created! You are able to log in')
             return redirect('login')
@@ -38,7 +38,6 @@ def profile(request):
     context = {
         'u_form':u_form,
         'p_form':p_form
-
     }
     return render(request, 'accounts/profile.html', context)
 
