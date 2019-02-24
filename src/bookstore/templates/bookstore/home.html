@@ -15,6 +15,10 @@
           <div class="carousel-item active">
             <img src="{% static 'bookstore/img/book1.jpeg' %}" class="d-block w-100" alt="...">
           </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h1>Welcome to Geektext</h1>
+            <p>Find all the books for your geek</p>
+          </div>
           <div class="carousel-item">
             <img src="{% static 'bookstore/img/book2.jpg' %}" class="d-block w-100" alt="...">
           </div>
@@ -31,16 +35,18 @@
           <span class="sr-only">Next</span>
         </a>
       </div><br><br>
-<div class="col-lg-9">
+
+<div class="container bg-light">
+<!-- <div class="col-lg-9"> -->
 <div class="row">
 {% for i in book_by_page %}
-            <div class="col-lg-4 col-md-6 mb-4 {{i.category}}">
-              <div class="card h-100">
+            <div class="col-lg-4 col-md-6 mb-4 mt-4 {{i.category}}">
+              <div class="card" style="width: 18rem;">
                 <a href="#"><img class="card-img-top" src={{i.image.url}} alt=""></a>
                 <div class="card-body">
-                  <h4 class="card-title">
+                  <h5 class="card-title">
                     <a href="/books/details/{{i.id}}">{{i.title}}</a>
-                  </h4>
+                  </h5>
                   
                   <small class="text-muted">
                       by <cite title="Source Title">Author Name</cite>
@@ -79,10 +85,12 @@
       <li class="disabled"><span>&raquo;</span></li>
     {% endif %}
   </ul>
+
+
 {% endif %}
 
 </div>
 
-
+</div>
 
 {% endblock %} 
