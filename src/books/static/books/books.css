@@ -70,6 +70,9 @@
   transform: translateX(0);
 }
 
+ul {
+    list-style-type: none;
+  }
 
 .carousel-control.left,.carousel-control.right {background-image:none;}
 /* End carousel */

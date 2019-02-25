@@ -12,7 +12,7 @@
             <div class="col-sm-4 col-md-3">{% if book.image %}
                 <img src="{{ book.image.url }}" style="height: 250px; width: 200px;">
             {% else %}
-                <img id="book-image" src="/media/coming-soon.jpg" style="height: 250px; width: 200px;">
+                <img id="book-image" src="/media/coming-soon.jpg" style="height: 350px; width: 230px;">
             {% endif %}</div>
             <div class="col-sm-5 col-md-6" style="padding: 0 15px 150px 0; border-right: 1px solid #cccccc;">
                 <h2>{{ book.title }}</h2>
@@ -73,11 +73,25 @@
         <div id="full-desc" class="row detail-content">
             <div class="col-xs-6" style="padding-left: 0;">
                 <h3>Full Description</h3>
+                <div class="media">
+                    <div class="media-left media-top">
+                        <img src="{{ book.author.first.image.url }}" class="media-object"
+                    <!-- style="width: 300px; margin-right: 15px;" -->
+                    </div>
+                    <div class="media-body">
                 <p>{{ book.description|linebreaksbr }}</p>
             </div>
         </div>
         <div id="prod-details" class="row detail-content">
-            <h3>Product Details</h3>
+           <li><h3>Product Details</h3>
+            <div class="media">
+                <div class="media-left media-top">
+                    <img src="{{ book.author.first.image.url }}" class="media-object"
+                <!-- style="width: 300px; margin-right: 15px;" -->
+                </div>
+                <div class="media-body">
+                        <p>{{ book.details|linebreaksbr }}</p>
+
             {# <p><strong>ISBN-13:</strong></p> #}
             <p><strong>Genre:</strong>
                 <a href="/books/?q={{ book.genre|capfirst }}&sort=-tech_valley_best&order=-avg_rating">{{ book.genre|capfirst }}</a>
@@ -85,18 +99,19 @@
             <p><strong>Publisher:</strong> {{ book.publisher }}</p>
             <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
             <p><strong>Pages:</strong> {% if book.pages == 0 %}TBA{% else %}{{ book.pages }}{% endif %}</p>
-            <p><strong>Sales Rank:</strong> {{ book.sales_rank }}</p>
+            <p><strong>Sales Rank:</strong> {{ book.sales_rank }}</p></li>
         </div>
         <div id="author-bio" class="row detail-content">
             <h3>About the Author</h3>
             <div class="media">
                 <div class="media-left media-top">
                     <img src="{{ book.author.first.image.url }}" class="media-object"
-                         style="width: 300px; margin-right: 15px;">
+                <!-- style="width: 300px; margin-right: 15px;" -->
                 </div>
                 <div class="media-body">
                     <p>{{ book.authors.first.description|linebreaksbr }}</p>
-                    <h4 style="margin-top: 35px;">Brief Biography</h4>
+                    <h4 style="margin-top: 25px;">Brief Biography</h4>
+                    <div class ="content">
                     <h5 style="margin-bottom: 5px;">Birthplace:</h5>
                     <p>{{ book.authors.first.birthplace }}</p>
                     <h5 style="margin-bottom: 5px;">Date of Birth:</h5>
