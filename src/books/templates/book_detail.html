@@ -1,7 +1,7 @@
 {% extends "bookstore/base.html" %}
 {% block title %}{{ book.title }} | {{ block.super }}{% endblock %}
 {% load static from staticfiles %}
-
+<link rel="stylesheet" href="{% static 'books/books.css' %}">
 
 
 
@@ -10,7 +10,7 @@
         
         <div class="row detail-content">
             <div class="col-sm-4 col-md-3">{% if book.image %}
-                <img src="{{ book.image.url }}" style="height: 350px; width: 250px;">
+                <img class = zoom img src="{{ book.image.url }}" style="height: 350px; width: 250px;">
             {% else %}
                 <img id="book-image" src="/media/coming-soon.jpg" style="height: 350px; width: 230px;">
             {% endif %}</div>

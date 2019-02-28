@@ -77,3 +77,9 @@ ul {
 .carousel-control.left,.carousel-control.right {background-image:none;}
 /* End carousel */
 
+.zoom img{
+    transition: transform .2s
+}
+.zoom:hover {
+    transform: scale(1.5); 
+  }
