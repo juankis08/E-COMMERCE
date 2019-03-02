@@ -1,6 +1,9 @@
 {% extends "bookstore/base.html" %}
 {% load static %}
 
+{% block title %}{{ book.title }} | {{ block.super }}{% endblock %}
+{% load static from staticfiles %}
+
 <title> Home Page</title>
 
 
@@ -49,10 +52,8 @@
                   </h5>
                   
                   <small class="text-muted">
-                      by <cite title="Source Title">{{Books}}</cite>
+                      by <cite title="Source Title">Author Name</cite>
                   </small>
-
-                
 
                   <h5>${{i.price}}</h5>
                   <p class="card-text"></p>
