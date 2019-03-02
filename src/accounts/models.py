@@ -23,8 +23,8 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 class WishList(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    book_title = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.profile.user.username} Profile'
+        return f'{self.user.username}, {self.book.title}'
