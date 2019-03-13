@@ -8,6 +8,7 @@ urlpatterns = [
     # path('^(?P<pk>\d+)/$', views.BookDetailView.as_view(), name="book_detail"),
     path('', views.book_list_view, name="book_list"),
     path('details/<int:index>/',views.book_detail_view, name='book_detail'),
+    path('books</int:index>',views.book_author_view, name='book_author'),
     
 
 ]
