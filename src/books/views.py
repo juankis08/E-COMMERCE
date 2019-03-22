@@ -233,3 +233,10 @@ def book_detail_view(request, index):
     for book in Book.objects.all():
         if str(book.id) == str(index):
             return render(request, 'book_detail.html', {'book': book})
+
+# data = Book.objects.all()
+
+# book={
+#      "book": book
+#     }
+
