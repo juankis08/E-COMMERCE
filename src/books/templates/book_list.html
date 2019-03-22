@@ -63,7 +63,7 @@
               <input type="radio" name="rating" value="1" checked> <span>★</span> <span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span><br>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-sm">Go</button>
+        <button type="submit" class="btn btn-success btn-sm">Go</button>
 
       </form>
     </div>
@@ -81,15 +81,16 @@
                 <a href="#"><img class="card-img-top" src={{i.image.url}} alt=""></a>
                 <div class="card-body">
                   <h6 class="card-title">
-                    <a href="/books/details/{{i.id}}">{{i.title}}</a>
+                    <a href="/books/details/{{i.id}}" class="text-secondary font-weight-bold">{{i.title}} </a>
                   </h6>
 
-                  <h6>${{i.price}}</h6>
+                  <h6 class="text-success">${{i.price}}</h6>
+                  
                   <p class="card-text"></p>
                 </div>
-                <div class="card-footer">
-                 <a href="/books/details/{{i.id}}"> Details</a>
-                 <a href="#" class="btn btn-primary float-right"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                <div class="card-footer text-dark">
+                 <a href="/books/details/{{i.id}}" class="text-dark"> Details</a>
+                 <a href="#" class="btn btn-success btn-inverse float-right"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
               </div>
             </div>
