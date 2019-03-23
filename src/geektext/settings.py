@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
-    'crispy_forms', 
+    'crispy_forms',
+    'billing', 
     'bookstore.apps.BookstoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
