@@ -74,6 +74,129 @@
                 {% endif %}
             </div>
         {% endif %}
+         
+
+        {% for book in books %}
+        <div>{{book.image}} </div>
+    
+        {% endfor %}
+
+
+        <!-- Carousel -->
+        <!--Carousel Wrapper-->
+        <div id="carousel-book-suggestions" class="carousel-book-suggerences">
+<div id="carousel-with-lb" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+    <!--Controls-->
+    <div class="controls-top">
+      <a class="btn-floating btn-secondary" href="#carousel-with-lb" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+      <a class="btn-floating btn-secondary" href="#carousel-with-lb" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+    </div>
+    <!--/.Controls-->
+  
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-with-lb" data-slide-to="0" class="active secondary-color"></li>
+      <li data-target="#carousel-with-lb" data-slide-to="1" class="secondary-color"></li>
+      <li data-target="#carousel-with-lb" data-slide-to="2" class="secondary-color"></li>
+    </ol>
+    <!--/.Indicators-->
+  
+    <!--Slides and lightbox-->
+  <!-- <div>{{ book.title }}</div> -->
+    <div class="carousel-inner mdb-lightbox" role="listbox" >
+      <div id="mdb-lightbox-ui"></div>
+
+      
+      <!--First slide-->
+    
+          <div class="carousel-item active">
+  
+        <figure class="d-md-inline-block">
+          <a href="/books/details/13" data-size="1600x1067">
+            <img src="/media/book9_HbgtjCy.jpg" class="book_13" alt="book_13" width="150" height="250">
+          </a>
+        </figure>
+  
+        <figure class="d-md-inline-block">
+          <a href="/books/details/21" data-size="1600x1067">
+            <img src="/media/book17_w26tsBF.jpg" class="book_21" alt="book_21" width="150" height="250">
+          </a>
+        </figure>
+        
+        <figure class="d-md-inline-block">
+            <a href="/books/details/9" data-size="1600x1067">
+              <img src="/media/book5_wHdPfgx.jpg" class="book_9" alt="book_9" width="150" height="250">
+            </a>
+          </figure>
+       
+  
+      </div>
+      <!--/.First slide-->
+  
+      <!--Second slide-->
+      <div class="carousel-item">
+  
+        <figure class="d-md-inline-block">
+          <a href="/books/details/16" data-size="1600x1067">
+            <img src="/media/book12_6IcX0pp.jpg" class="book_16" alt="book_16" width="150" height="250">
+          </a>
+        </figure>
+  
+        <figure class="d-md-inline-block">
+          <a href="/books/details/14" data-size="1600x1067">
+            <img src="/media/book10_SEYaMq7.jpg" class="book_14" alt="book_14" width="150" height="250">
+          </a>
+        </figure>
+  
+        <figure class="d-md-inline-block">
+            <a href="/books/details/18" data-size="1600x1067">
+              <img src="/media/book14_a732olz.jpg" class="book_18" alt="book_18" width="150" height="250">
+            </a>
+          </figure>
+
+      </div>
+      <!--/.Second slide-->
+  
+      <!--Third slide-->
+      <div class="carousel-item">
+  
+        <figure class="d-md-inline-block">
+          <a href="/books/details/12" data-size="1600x1067">
+            <img src="/media/book8_eXx7pzT.jpg" class="book_12" alt="book_12" width="150" height="250">
+          </a>
+        </figure>
+  
+        <figure class="d-md-inline-block">
+          <a href="/books/details/20" data-size="1600x1067">
+            <img src="/media/book16_1MdKow0.jpg" class="book_20" alt="book_20" width="150" height="250">
+          </a>
+        </figure>
+  
+        <figure class="d-md-inline-block">
+            <a href="/books/details/1" data-size="1600x1067">
+              <img src="/media/book1.jpg" class="book_1" alt="book_1" width="150" height="250">
+            </a>
+          </figure>
+
+        
+  
+      
+  
+      </div>
+      <!--/.Third slide-->
+  
+    </div>
+    <!--/.Slides-->
+  
+  </div>
+  </div>
+  <!--/.Carousel Wrapper-->
+        
+
+
+
+
         <div id="full-desc" class="row detail-content">
             <!-- <div class="col-xs-6" style="padding-left: 0;"> -->
                 <ul><h3>Full Description</h3>
