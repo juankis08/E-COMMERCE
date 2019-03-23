@@ -42,6 +42,10 @@
                         <button class="btn btn-success">Add To Cart</button>
                     </a>
                 {% endif %}
+                <br/><br/>
+                <a href="/add-to-wishlist/{{i.id}}">
+                    <button class="btn btn-success">Add To Wishlist <i class="fas fa-heart"></i></button>
+                </a>
             </div>
         </div>
         {% if author_books.count > 2 %}

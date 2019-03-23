@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
+from books.models import Book
 
 # Create your models here.
 class Profile(models.Model):
@@ -20,4 +21,9 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+class WishList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.user.username}, {self.book.title}'
