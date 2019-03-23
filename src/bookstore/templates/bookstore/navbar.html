@@ -39,13 +39,13 @@
 
                             <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-heart"></i> Wish List</a>
+                                <a class="dropdown-item" href="{% url 'wish_list' %}"><i class="fas fa-heart"></i> Wish List</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="btn btn-primary btn-sm btn-info btn-block" href="{% url 'logout' %}" role="button">Sign out</a>
 
-                                <li class="nav-item"></li>
-                                <a class="navbar-brand" href="#">
+                            <li class="nav-item"></li>
+                                <a class="navbar-brand" href="{% url 'profile' %}">
                                         <img src="{{user.profile.image.url }}" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
                                         {{ accounts.username }}
                                 </a>

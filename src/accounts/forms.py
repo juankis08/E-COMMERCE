@@ -24,4 +24,8 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
+class GuestForm(forms.Form):
+    email = forms.EmailField()
+
+
 
