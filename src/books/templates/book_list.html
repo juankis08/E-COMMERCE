@@ -11,8 +11,8 @@
       {% csrf_token %}
       <select id="sort_values" name="sort_values">
       <option value="blank">sort by price</option>
-      <option value="low" {% if value == "low" %}selected{% endif %}>Price low to high</option>
-      <option value="high" {% if value == "high" %}selected{% endif %}>Price high to low</option>
+      <option value="low" {% if value = "low" %}selected{% endif %}>Price low to high</option>
+      <option value="high" {% if value = "high" %}selected{% endif %}>Price high to low</option>
       </select>
   </form>
 </div>

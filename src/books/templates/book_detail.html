@@ -65,20 +65,23 @@
     <!--Slides and lightbox-->
     <div class="carousel-inner">
 
+        {% for book in author_books %}
+        
+        {% if forloop.counter == 1 %}
 
-        <div class="carousel-item active">
-            {{author_books.count}}
-            {% for book in author_books %}
-            <img src="/media/{{book.image}}"></img>
-            {% endfor %}
-        </div>
-    
-        <div class="carousel-item">
-        </div>
-    
-        <div class="carousel-item">
-        </div>
+        <a href="/books/details/{{book.id}}" class="carousel-item active">
 
+            {% else %}
+
+        <a href="/books/details/{{book.id}}" class="carousel-item ">
+
+{% endif %}
+            <img src="/media/{{book.image}}"/>
+           
+            <h2>{{book.title}}</h2>
+            <p>{{book.description}}</p>
+        </a>
+        {% endfor %}
   
     </div>
   
