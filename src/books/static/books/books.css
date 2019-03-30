@@ -74,6 +74,18 @@ ul {
     list-style-type: none;
   }
 
+  .carousel-inner{
+    text-align: center; 
+    margin: auto; 
+    width: 200px;
+    font-style: normal;
+    font-size: 0vmin;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    
+  }
+  
 .carousel-control.left,.carousel-control.right {background-image:none;}
 /* End carousel */
 
@@ -118,3 +130,10 @@ ul {
 .carousel-book-suggestions{
     text-align: right !important; 
 }
+
+
+/* img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  } */

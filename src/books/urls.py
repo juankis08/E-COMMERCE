@@ -10,6 +10,7 @@ urlpatterns = [
     path('details/<int:index>/',views.book_detail_view, name='book_detail'),
     path('refined-search/', views.refined_view, name="refined_view"),
     path('sorted/', views.sorted_book, name="sorted"),
+    path('books/', views.book_list_view)
     
 
 ]

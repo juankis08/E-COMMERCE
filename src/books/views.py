@@ -240,9 +240,14 @@ def book_list_view(request):
 
 
 def book_detail_view(request, index):
+
+
+    author = Author.objects.filter(book=index).distinct()
+    book_authors = Book.objects.filter(authors__book__authors__in=author).distinct()
     for book in Book.objects.all():
+        
         if str(book.id) == str(index):
-            return render(request, 'book_detail.html', {'book': book})
+            return render(request, 'book_detail.html', {'book': book, 'author':author, 'author_books':book_authors})
 
 
 def refined_view(request):
