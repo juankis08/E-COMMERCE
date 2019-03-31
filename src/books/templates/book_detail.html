@@ -77,9 +77,13 @@
 
 {% endif %}
             <img src="/media/{{book.image}}" style="height: 350px; width: 230px;"/>
-           
-            <h5>{{book.title}}</h5>
-            <p>{{book.description}}</p>
+            <!-- <h5>{{book.title}}</h5> -->
+            <div class="text_carousel">
+                    <h5>{{book.title}}</h5>
+            <!-- <p>{{ author }}</p> -->
+            <p>{{book.authors}}</p>
+        </div>
+
         </a>
         {% endfor %}
   
