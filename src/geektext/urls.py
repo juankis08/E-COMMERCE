@@ -34,6 +34,7 @@ urlpatterns = [
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password_reset_complete.html'), name='password_reset_complete'),
     path('books/', include('books.urls')),
     path('', include('bookstore.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
 
 if settings.DEBUG:

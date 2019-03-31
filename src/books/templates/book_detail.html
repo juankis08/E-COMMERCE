@@ -3,6 +3,14 @@
 {% load static from staticfiles %}
 <link rel="stylesheet" href="{% static 'books/books.css' %}">
 
+{% load ratings %}
+<html>
+
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+</html>
+
 
 
 {% block home_content %}
@@ -291,8 +299,8 @@
 
             </div>
         </div>
-
-
+        
+        
         {% comment %}
         {% if book.pages > 0 and book.sales_rank > 0 %}
             <div id="book-reviews" class="row detail-content">
