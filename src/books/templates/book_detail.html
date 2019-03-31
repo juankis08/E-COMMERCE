@@ -48,43 +48,11 @@
                 </a>
             </div>
         </div>
-        {% if author_books.count > 2 %}
-            <div class="row detail-content">
-                <h3>Other Books by This Author</h3>
-                {% if author_books.count > 6 %}
-                    {% for books in author_books|slice:"6" %}
-                        <div class="col-xs-4 text-center" style="padding-top: 20px;">
-                            <a href="{% url 'books:book_detail' pk=books.id %}">
-                                <img src="{{ books.image.url }}" style="width:100px; height:150px; ">
-                                <h5 class="text-muted">{{ books.title }}</h5>
-                                {% include 'book_rating.html' %}
-                            </a>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    {% for books in author_books|slice:"3" %}
-                        <div class="col-xs-4 text-center" style="padding-top: 20px;">
-                            <a href="{% url 'books:book_detail' pk=books.id %}">
-                                <img src="{{ books.image.url }}" style="width:100px; height:150px; ">
-                                <h5 class="text-muted">{{ books.title }}</h5>
-                                {% include 'book_rating.html' %}
-                            </a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        {% endif %}
          
-
-        {% for book in books %}
-        <div>{{book.image}} </div>
-    
-        {% endfor %}
-
 
         <!-- Carousel -->
         <!--Carousel Wrapper-->
-        <div id="carousel-book-suggestions" class="carousel-book-suggerences">
+<div class="row detail-content">
 <div id="carousel-with-lb" class="carousel slide carousel-multi-item" data-ride="carousel">
 
     <!--Controls-->
@@ -94,137 +62,36 @@
     </div>
     <!--/.Controls-->
   
-    <!--Indicators-->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-with-lb" data-slide-to="0" class="active secondary-color"></li>
-      <li data-target="#carousel-with-lb" data-slide-to="1" class="secondary-color"></li>
-      <li data-target="#carousel-with-lb" data-slide-to="2" class="secondary-color"></li>
-    </ol>
-    <!--/.Indicators-->
-  
     <!--Slides and lightbox-->
-  <!-- <div>{{ book.title }}</div> -->
-    <div class="carousel-inner mdb-lightbox" role="listbox" >
-      <div id="mdb-lightbox-ui"></div>
+    <div class="carousel-inner">
 
-      
-      <!--First slide-->
-    
-          <div class="carousel-item active">
-  
-        <figure class="d-md-inline-block">
-          <a href="/books/details/13" data-size="1600x1067">
-            <img src="/media/book9_HbgtjCy.jpg" class="book_13" alt="book_13" width="150" height="250">
-          </a>
-        </figure>
-  
-        <figure class="d-md-inline-block">
-          <a href="/books/details/21" data-size="1600x1067">
-            <img src="/media/book17_w26tsBF.jpg" class="book_21" alt="book_21" width="150" height="250">
-          </a>
-        </figure>
+        {% for book in author_books %}
         
-        <figure class="d-md-inline-block">
-            <a href="/books/details/9" data-size="1600x1067">
-              <img src="/media/book5_wHdPfgx.jpg" class="book_9" alt="book_9" width="150" height="250">
-            </a>
-          </figure>
-       
-          <figure class="d-md-inline-block">
-                <a href="/books/details/8" data-size="1600x1067">
-                  <img src="/media/book4_aQAYQy0.png" class="book_9" alt="book_9" width="150" height="250">
-                </a>
-              </figure>
+        {% if forloop.counter == 1 %}
 
-              <figure class="d-md-inline-block">
-                    <a href="/books/details/19" data-size="1600x1067">
-                      <img src="/media/book15_VoUVets.jpg" class="book_9" alt="book_9" width="150" height="250">
-                    </a>
-                  </figure>
-  
-      </div>
-      <!--/.First slide-->
-  
-      <!--Second slide-->
-      <div class="carousel-item">
-  
-        <figure class="d-md-inline-block">
-          <a href="/books/details/16" data-size="1600x1067">
-            <img src="/media/book12_6IcX0pp.jpg" class="book_16" alt="book_16" width="150" height="250">
-          </a>
-        </figure>
-  
-        <figure class="d-md-inline-block">
-          <a href="/books/details/14" data-size="1600x1067">
-            <img src="/media/book10_SEYaMq7.jpg" class="book_14" alt="book_14" width="150" height="250">
-          </a>
-        </figure>
-  
-        <figure class="d-md-inline-block">
-            <a href="/books/details/18" data-size="1600x1067">
-              <img src="/media/book14_a732olz.jpg" class="book_18" alt="book_18" width="150" height="250">
-            </a>
-          </figure>
-          <figure class="d-md-inline-block">
-                <a href="/books/details/14" data-size="1600x1067">
-                  <img src="/media/book10_SEYaMq7.jpg" class="book_18" alt="book_18" width="150" height="250">
-                </a>
-              </figure>
+        <a href="/books/details/{{book.id}}" class="carousel-item active">
 
-              <figure class="d-md-inline-block">
-                    <a href="/books/details/12" data-size="1600x1067">
-                      <img src="/media/book8_eXx7pzT.jpg" class="book_18" alt="book_18" width="150" height="250">
-                    </a>
-                  </figure>
+            {% else %}
 
-      </div>
-      <!--/.Second slide-->
-  
-      <!--Third slide-->
-      <div class="carousel-item">
-  
-        <figure class="d-md-inline-block">
-          <a href="/books/details/12" data-size="1600x1067">
-            <img src="/media/book8_eXx7pzT.jpg" class="book_12" alt="book_12" width="150" height="250">
-          </a>
-        </figure>
-  
-        <figure class="d-md-inline-block">
-          <a href="/books/details/20" data-size="1600x1067">
-            <img src="/media/book16_1MdKow0.jpg" class="book_20" alt="book_20" width="150" height="250">
-          </a>
-        </figure>
-  
-        <figure class="d-md-inline-block">
-            <a href="/books/details/1" data-size="1600x1067">
-              <img src="/media/book1.jpg" class="book_1" alt="book_1" width="150" height="250">
-            </a>
-          </figure>
+        <a href="/books/details/{{book.id}}" class="carousel-item ">
 
-          <figure class="d-md-inline-block">
-                <a href="/books/details/13" data-size="1600x1067">
-                  <img src="/media/book13.jpg" class="book_1" alt="book_1" width="150" height="250">
-                </a>
-              </figure>
+{% endif %}
+            <img src="/media/{{book.image}}" style="height: 350px; width: 230px;"/>
+            <!-- <h5>{{book.title}}</h5> -->
+            <div class="text_carousel">
+                    <h5>{{book.title}}</h5>
+            <!-- <p>{{ author }}</p> -->
+            <p>{{book.authors}}</p>
+        </div>
 
-              <figure class="d-md-inline-block">
-            <a href="/books/details/14" data-size="1600x1067">
-              <img src="/media/book14.jpg" class="book_1" alt="book_1" width="150" height="250">
-            </a>
-          </figure>
-        
-  
-      
-  
-      </div>
-      <!--/.Third slide-->
+        </a>
+        {% endfor %}
   
     </div>
-    <!--/.Slides-->
   
-  </div>
-  </div>
-  <!--/.Carousel Wrapper-->
+</div>
+</div>
+
         
 
 
@@ -261,7 +128,7 @@
             <p><strong>Publication Date:</strong> {{ book.publication_date }}</p>
             <p><strong>Pages:</strong> {% if book.pages == 0 %}TBA{% else %}{{ book.pages }}{% endif %}</p>
             <p><strong>Sales Rank:</strong> {{ book.sales_rank }}</p></ul>
-        </div></li>
+        </div>
 
         <div id="author-bio" class="row detail-content">
             <ul><h3>About the Author</h3>
