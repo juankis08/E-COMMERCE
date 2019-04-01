@@ -10,6 +10,17 @@
 
 {% block home_content %}
 <div>
+    {% for i in wishlistNames %}
+        <div id="wishlist-name-{{forloop.counter0}}">
+            {% if i is not None %}
+                <b>{{i.name}}</b>
+                <button onclick="wishlistControl({{i.wishlist_num}}, 'create-wistlist-{{i.wishlist_num}}', {{user.id}}, 'Delete')">Delete</button>
+            {% else %}
+                <input id="create-wistlist-{{forloop.counter0}}" type="text" placeholder="Create Wishlist"/>
+                <button onclick="wishlistControl({{forloop.counter0}}, 'create-wistlist-{{forloop.counter0}}', {{user.id}}, 'Create')">+</button>
+            {% endif %}
+        </div>
+    {% endfor %}
     {% for item in wishlist %}
         <div class="col-lg-4 col-md-6 mb-4 {{item.book.category}}">
             <div class="card h-100">
