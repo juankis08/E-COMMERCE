@@ -76,16 +76,24 @@
         <a href="/books/details/{{book.id}}" class="carousel-item ">
 
 {% endif %}
-            <img src="/media/{{book.image}}" style="height: 350px; width: 230px;"/>
-            <!-- <h5>{{book.title}}</h5> -->
+        
+        <div class="carousel-inner">
+    <img class = zoom_carousel img src="/media/{{book.image}}" style="height: 275px; width: 200px;"/>
             <div class="text_carousel">
                     <h5>{{book.title}}</h5>
-            <!-- <p>{{ author }}</p> -->
-            <p>{{book.authors}}</p>
+        
+                {% for a in author %}
+                {% if forloop.first %}
+                <p>{{ a }}</p>
+                {%endif%}
+
+                {% endfor %}
         </div>
+    </div>
 
         </a>
         {% endfor %}
+        
   
     </div>
   

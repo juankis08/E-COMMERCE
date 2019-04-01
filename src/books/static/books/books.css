@@ -74,6 +74,9 @@ ul {
     list-style-type: none;
   }
 
+  /* .card-img-top{
+    height: 350px; width: 230px;
+  } */
   /* .carousel-inner{
     position: relative; 
     width: 100%; 
@@ -97,6 +100,8 @@ ul {
     white-space: normal; 
     
   } */
+
+
   .text_carousel{
     vertical-align: top;
     text-align: left;
@@ -123,6 +128,18 @@ ul {
   }
 
 
+  /* image zoom on CAROUSEL  */
+  .zoom_carousel img{
+    transition: transform .2s
+}
+
+.zoom_carousel:hover {
+    transform: scale(1.5); 
+    z-index: 100;
+    position: relative;
+   
+  }
+
   .carousel-with-lb {
     width:340px;
     height:150px;
@@ -146,6 +163,7 @@ ul {
 
 .carousel-inner mdb-lightbox{
     text-align: left !important; 
+    background-color:lavender;
 }
 
 .carousel-item active text-center{
