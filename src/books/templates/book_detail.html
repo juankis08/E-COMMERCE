@@ -49,10 +49,11 @@
             </div>
         </div>
          
-
+        <ul><h3 style="font-family: Arial, sans-serif;"> Other Books by the Same Author </h3></ul>
+    
         <!-- Carousel -->
         <!--Carousel Wrapper-->
-<div class="row detail-content">
+<ul><div class="row detail-content">
 <div id="carousel-with-lb" class="carousel slide carousel-multi-item" data-ride="carousel">
 
     <!--Controls-->
@@ -99,6 +100,7 @@
   
 </div>
 </div>
+</ul></ul>
 
         
 
@@ -147,14 +149,16 @@
                 </div>
                 <div class="media-body">
                     <p>{{ book.authors.first.description|linebreaksbr }}</p>
-                    <h4 style="margin-top: 25px;">Brief Biography</h4>
-                    <div class ="content">
+                </div>
+            </div>
+                <div class="media-left">
+                    <h4>Brief Biography</h4>
                     <p><strong>Birthday:</strong> {{ book.authors.first.birthplace }}</p>
                     <p><strong>Date of Birth:</strong> {{ book.authors.first.dob }}</p>
                     <p><strong>Education:</strong> {{ book.authors.first.education }}</p>
                     <p><strong>Email:</strong> {{ book.authors.first.email }}</p>
                     <p><strong>Website:</strong> <a href="{{ book.authors.first.website }}">{{ book.authors.first.website }}</a>
-                </div>
+                </div></div>
                 <ul>
                     <div class="media">
                         <div class="media-left media-top">
