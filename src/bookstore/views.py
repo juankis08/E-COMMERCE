@@ -35,12 +35,12 @@ def delete_wistlist(request, userID, wishlistID):
     WishListNames.objects.get(user=user, wishlist_num=wishlistID).delete()
     return JsonResponse({'msg':'Success'})
 
-def add_to_wishlist(request, bookID):
+def add_to_wishlist(request, wishlistID, bookID):
     if WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID)).exists():
-        return redirect('wish_list')
-    wishlistItem = WishList(user=request.user, book=Book.objects.get(id=bookID))
+        return JsonResponse({'msg':'Already exists'})
+    wishlistItem = WishList(user=request.user, book=Book.objects.get(id=bookID), wishlist_num=wishlistID)
     wishlistItem.save()
-    return redirect('wish_list')
+    return JsonResponse({'msg':'Success'})
 
 def remove_from_wishlist(request, bookID):
     WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID)).delete()

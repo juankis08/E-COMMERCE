@@ -15,14 +15,16 @@
         <link rel="stylesheet" type="text/css" href="{% static 'bookstore/css/main.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'books/books.css' %}">
         <script>
-            function addToWishlist(bookId, elementId) {
-                
+            function addToWishlist(bookId, wishlistID, elementId) {
+                fetch('http://localhost:8000/add-to-wishlist/'+wishlistID+'/'+bookId)
+                .then((data) => { return data.json()})
+                .then((body) => console.log(body))
             }
 
             function wishlistControl(wishlistId, inputId, userId, action) {
                 if(action == 'Create') {
                     var name = document.getElementById(inputId).value;
-                    fetch('http://127.0.0.1:8000/create-wishlist/'+userId+'/'+wishlistId+'/'+name)
+                    fetch('http://localhost:8000/create-wishlist/'+userId+'/'+wishlistId+'/'+name)
                     .then((data) => { return data.json()})
                     .then((body) => console.log(body))
 

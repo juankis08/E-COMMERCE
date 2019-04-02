@@ -43,9 +43,11 @@
                     </a>
                 {% endif %}
                 <br/><br/>
-                <a href="/add-to-wishlist/{{i.id}}">
-                    <button class="btn btn-success">Add To Wishlist <i class="fas fa-heart"></i></button>
-                </a>
+                <div id='wishlist-list'>
+                    {% for k, w in wishlists.items %}
+                        <button onclick="addToWishlist({{book.id}}, {{w.wishlist_num}}, 'wishlist-list')" class="btn btn-success">Add To {{w.name}} Wishlist <i class="fas fa-heart"></i></button>
+                    {%endfor%}
+                </div>
             </div>
         </div>
          
