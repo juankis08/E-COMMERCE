@@ -43,6 +43,11 @@
                     <a href="/books/details/{{item.book.id}}"> Details</a>
                     <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                     <button onclick="removeFromWishList({{item.book.id}}, {{wishlistNum}})" class="btn btn-danger float-right"><i class="fas fa-times"></i></button>
+                    {% for i in wishlistNames %}
+                        {% if i is not None and forloop.counter0 is not wishlistNum %}
+                            <button onclick="moveToWishlist({{item.book.id}}, {{wishlistNum}}, {{i.wishlist_num}})" class="btn btn-success">Move To {{i.name}} Wishlist <i class="fas fa-heart"></i></button>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 </div>
             </div>

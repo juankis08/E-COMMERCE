@@ -28,6 +28,13 @@
                 location.reload();
             }
 
+            function moveToWishlist(bookId, wishlistID1, wishlistID2) {
+                fetch('http://localhost:8000/move-to-wishlist/'+bookId+'/'+wishlistID1+'/'+wishlistID2)
+                .then((data) => { return data.json()})
+                .then((body) => console.log(body))
+                location.reload();
+            }
+
             function wishlistControl(wishlistId, inputId, userId, action) {
                 if(action == 'Create') {
                     var name = document.getElementById(inputId).value;

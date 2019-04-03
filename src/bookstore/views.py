@@ -47,6 +47,15 @@ def add_to_wishlist(request, wishlistID, bookID):
     wishlistItem.save()
     return JsonResponse({'msg':'Success'})
 
+def move_wistlist(request, bookId, wishlistID1, wishlistID2):
+    wishlistitem = WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookId), wishlist_num=wishlistID1)
+    wishlistitem2 = WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookId), wishlist_num=wishlistID2)
+    if not wishlistitem2:
+        WishList(user=request.user, book=Book.objects.get(id=bookId), wishlist_num=wishlistID2).save()
+    if wishlistitem:
+        wishlistitem.delete()
+    return JsonResponse({'msg':'Success'})
+
 def remove_from_wishlist(request, wishlistID, bookID):
     wishlistItem = WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID), wishlist_num=wishlistID)
     if wishlistItem:
