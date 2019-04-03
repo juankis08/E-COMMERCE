@@ -21,6 +21,13 @@
                 .then((body) => console.log(body))
             }
 
+            function removeFromWishList(bookId, wishlistID) {
+                fetch('http://localhost:8000/remove-from-wishlist/'+wishlistID+'/'+bookId)
+                .then((data) => { return data.json()})
+                .then((body) => console.log(body))
+                location.reload();
+            }
+
             function wishlistControl(wishlistId, inputId, userId, action) {
                 if(action == 'Create') {
                     var name = document.getElementById(inputId).value;
@@ -32,7 +39,11 @@
                     `<b>`+name+`</b>
                     <button onclick="wishlistControl(`+wishlistId+`, 'create-wistlist-`+wishlistId+`', `+userId+`, 'Delete')">Delete</button>`
                 } else if(action == 'Edit') {
-
+                    var name = document.getElementById(inputId).value;
+                    fetch('http://localhost:8000/edit-wishlist/'+wishlistId+'/'+name)
+                    .then((data) => { return data.json()})
+                    .then((body) => console.log(body))
+                    document.getElementById('wishlist-title-'+wishlistId).innerHTML = name;
                 } else if(action == 'Delete') {
                     fetch('http://127.0.0.1:8000/delete-wishlist/'+userId+'/'+wishlistId)
                     .then((data) => { return data.json()})

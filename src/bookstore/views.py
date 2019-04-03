@@ -30,34 +30,44 @@ def create_wistlist(request, userID, wishlistID, name):
     WishListNames(user=user, wishlist_num=wishlistID, name=name).save()
     return JsonResponse({'msg':'Success'})
 
+def edit_wistlist(request, wishlistID, name):
+    wishlistItem = WishListNames.objects.filter(user=request.user, wishlist_num=wishlistID)
+    wishlistItem.update(name=name)
+    return JsonResponse({'msg':'Success'})
+
 def delete_wistlist(request, userID, wishlistID):
     user = User.objects.get(id=userID)
     WishListNames.objects.get(user=user, wishlist_num=wishlistID).delete()
     return JsonResponse({'msg':'Success'})
 
 def add_to_wishlist(request, wishlistID, bookID):
-    if WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID)).exists():
+    if WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID), wishlist_num=wishlistID).exists():
         return JsonResponse({'msg':'Already exists'})
     wishlistItem = WishList(user=request.user, book=Book.objects.get(id=bookID), wishlist_num=wishlistID)
     wishlistItem.save()
     return JsonResponse({'msg':'Success'})
 
-def remove_from_wishlist(request, bookID):
-    WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID)).delete()
-    return redirect('wish_list')
+def remove_from_wishlist(request, wishlistID, bookID):
+    wishlistItem = WishList.objects.filter(user=request.user, book=Book.objects.get(id=bookID), wishlist_num=wishlistID)
+    if wishlistItem:
+        wishlistItem.delete()
+    return JsonResponse({'msg':'Success'})
 
-def wishlist(request):
+def wishlist_default(request):
+    return redirect('/wishlist/0')
+
+def wishlist(request, wishlistID):
     wishlist_names = WishListNames.objects.all()
     wishlist = WishList.objects.filter(user=request.user)
-    wishlist_dict = {}
     wishlist_names_d = [None, None, None]
     for w in wishlist_names:
         wishlist_names_d[w.wishlist_num] = w
 
     context = {
-        "wishlist": wishlist_dict,
+        "wishlist": wishlist,
         "wishlistNames": wishlist_names_d,
         "numWishlist": range(3),
+        "wishlistNum": wishlistID
     }
 
     return render(request, 'bookstore/wishlist.html', context)
