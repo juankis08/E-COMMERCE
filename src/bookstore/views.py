@@ -37,6 +37,7 @@ def edit_wistlist(request, wishlistID, name):
 
 def delete_wistlist(request, userID, wishlistID):
     user = User.objects.get(id=userID)
+    WishList.objects.filter(wishlist_num=wishlistID).delete()
     WishListNames.objects.get(user=user, wishlist_num=wishlistID).delete()
     return JsonResponse({'msg':'Success'})
 

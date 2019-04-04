@@ -43,11 +43,13 @@
                     </a>
                 {% endif %}
                 <br/><br/>
-                <div id='wishlist-list'>
-                    {% for k, w in wishlists.items %}
-                        <button onclick="addToWishlist({{book.id}}, {{w.wishlist_num}}, 'wishlist-list')" class="btn btn-success">Add To {{w.name}} Wishlist <i class="fas fa-heart"></i></button>
-                    {%endfor%}
-                </div>
+                {% if user.is_authenticated %}
+                    <div id='wishlist-list'>
+                        {% for k, w in wishlists.items %}
+                            <button onclick="addToWishlist({{book.id}}, {{w.wishlist_num}}, 'wishlist-list')" class="btn btn-success">Add To {{w.name}} Wishlist <i class="fas fa-heart"></i></button>
+                        {%endfor%}
+                    </div>
+                {% endif %}
             </div>
         </div>
          
