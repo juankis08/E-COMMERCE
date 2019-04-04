@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 from PIL import Image
 from books.models import Book
 
@@ -21,9 +22,24 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+class WishListNames(models.Model):
+    class Meta:
+        unique_together = (('user', 'wishlist_num'),)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    wishlist_num = models.IntegerField(
+        default=0,
+        validators=[MaxValueValidator(0), MinValueValidator(2)]
+    )
+    name = models.CharField(max_length=120)
+
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    wishlist_num = models.IntegerField(
+        default=0,
+        validators=[MaxValueValidator(0), MinValueValidator(2)]
+     )
 
     def __str__(self):
         return f'{self.user.username}, {self.book.title}'
