@@ -1,5 +1,5 @@
 from django.db import models
-from billing.models import BillingProfile
+from accounts.models import Profile
 
 # Create your models here.
 ADDRESS_TYPE = (
@@ -9,7 +9,7 @@ ADDRESS_TYPE = (
 
 
 class Address(models.Model):
-    billing_profile = models.ForeignKey(BillingProfile, on_delete = models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete = models.CASCADE, null=True )
     address_type = models.CharField(max_length=120, choices= ADDRESS_TYPE)
     address_line_1 = models.CharField(max_length=120)
     address_line_2 = models.CharField(max_length= 120, null =True, blank = True)
@@ -19,7 +19,7 @@ class Address(models.Model):
     country = models.CharField(max_length=120, default = 'United States of America')
 
     def __str__(self):
-        return str(self.billing_profile)
+        return str(self.profile)
 
 
 
