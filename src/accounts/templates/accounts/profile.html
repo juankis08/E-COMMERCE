@@ -6,12 +6,12 @@
 <div class="container-fluid col-md-4">
     <div class="content-section">
         <div class="media">
-        <img class="rounded-circle account-img" src="{{user.profile.image.url }}">
-        
-        <div class="media-body">
-            <h2 class="account-heading">{{ accounts.username }}</h2>
-            <p class="text-secondary">{{ accounts.email }}</p>
-        </div>
+            <img class="rounded-circle account-img" src="{{user.profile.image.url }}">
+
+            <div class="media-body">
+                <h2 class="account-heading">{{ accounts.username }}</h2>
+                <p class="text-secondary">{{ accounts.email }}</p>
+            </div>
         </div>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -19,11 +19,19 @@
                 <legend class="border-botton mb-4">Profile Info</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
+
             </fieldset>
             <div class="form-group">
+
                 <button class="btn btn-outline-info" type="submit">Update</button>
+
             </div>
         </form>
+        <hr>
+        <div class=" " align="center">
+            <!--<button class="btn btn-outline-info" type="submit" onclick="">Update</button>-->
+            <a class="ml-2" href="{% url 'address-home' %}"> Create Billing Profile</a>
+        </div><br>
     </div>
 </div>
 {% endblock register_content %}
