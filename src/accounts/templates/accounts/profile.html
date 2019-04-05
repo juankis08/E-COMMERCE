@@ -19,19 +19,11 @@
                 <legend class="border-botton mb-4">Profile Info</legend>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
-
             </fieldset>
             <div class="form-group">
-                
                 <button class="btn btn-outline-info" type="submit">Update</button>
-                
             </div>
         </form>
-        <hr>
-        <div class=" " align ="center">
-            <!--<button class="btn btn-outline-info" type="submit" onclick="">Update</button>-->
-            <a class="ml-2" href="{% url 'address-home' %}"> Create Billing Profile</a>
-        </div><br>
     </div>
 </div>
 {% endblock register_content %}
