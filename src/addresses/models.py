@@ -13,8 +13,8 @@ ADDRESS_TYPE = (
 class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses'
-
-    user = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    User = settings.AUTH_USER_MODEL
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     address_type = models.CharField(max_length=120, choices= ADDRESS_TYPE)
     address_line_1 = models.CharField(max_length=120)
     address_line_2 = models.CharField(max_length= 120, null =True, blank = True)
@@ -24,8 +24,8 @@ class Address(models.Model):
     country = models.CharField(max_length=120, default = 'United States of America')
 
     def __str__(self):
-        return str(self.user)
+        return f'{self.user} Address'
 
-
+    
 
 
