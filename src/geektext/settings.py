@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'billing', 
     'addresses',
+    'cards',
     'bookstore.apps.BookstoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',

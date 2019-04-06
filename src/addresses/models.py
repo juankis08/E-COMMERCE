@@ -9,7 +9,7 @@ ADDRESS_TYPE = (
 
 
 class Address(models.Model):
-    profile = models.ForeignKey(Profile, on_delete = models.CASCADE, null=True )
+    profile = models.ForeignKey(Profile, on_delete = models.CASCADE, null= True)
     address_type = models.CharField(max_length=120, choices= ADDRESS_TYPE)
     address_line_1 = models.CharField(max_length=120)
     address_line_2 = models.CharField(max_length= 120, null =True, blank = True)
@@ -20,6 +20,7 @@ class Address(models.Model):
 
     def __str__(self):
         return str(self.profile)
+
 
 
 

@@ -35,6 +35,7 @@ urlpatterns = [
     path('books/', include('books.urls')),
     path('', include('bookstore.urls')),
     path('addresses/', include('addresses.urls')),
+    path('cards/', include('cards.urls')),
 ]
 
 if settings.DEBUG:
