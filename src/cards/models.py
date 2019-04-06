@@ -12,7 +12,9 @@ CARD_TYPE = (
 )
 
 class Cards (models.Model):
-    profile = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    class Meta:
+        verbose_name_plural = 'Cards'
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     card_type = models.CharField(max_length=120, choices = CARD_TYPE)
     name_on_card = models.CharField(max_length=120)
     card_number = models.CharField(max_length=120)

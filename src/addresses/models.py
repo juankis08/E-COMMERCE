@@ -1,5 +1,7 @@
 from django.db import models
 from accounts.models import Profile
+from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 ADDRESS_TYPE = (
@@ -9,7 +11,10 @@ ADDRESS_TYPE = (
 
 
 class Address(models.Model):
-    profile = models.ForeignKey(Profile, on_delete = models.CASCADE, null= True)
+    class Meta:
+        verbose_name_plural = 'Addresses'
+
+    user = models.ForeignKey(Profile, on_delete = models.CASCADE)
     address_type = models.CharField(max_length=120, choices= ADDRESS_TYPE)
     address_line_1 = models.CharField(max_length=120)
     address_line_2 = models.CharField(max_length= 120, null =True, blank = True)
@@ -19,7 +24,7 @@ class Address(models.Model):
     country = models.CharField(max_length=120, default = 'United States of America')
 
     def __str__(self):
-        return str(self.profile)
+        return str(self.user)
 
 
 
