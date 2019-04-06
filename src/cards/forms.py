@@ -1,7 +1,6 @@
 from django import forms
 from .models import Cards
 
-
 class CardsRegisterForm(forms.ModelForm):
     #class meta renders the the form as exactly is displayed in admin django web page
 
