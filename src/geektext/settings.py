@@ -44,9 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'star_ratings',
-    'django.contrib.sites',
-    'reviews',
 ]
 
 MIDDLEWARE = [
@@ -145,5 +142,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'help.geektext@gmail.com'
 EMAIL_HOST_PASSWORD = 'Cuba1234'
-
-SITE_ID = 1

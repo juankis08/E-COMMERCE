@@ -1,16 +1,7 @@
 {% extends "bookstore/base.html" %}
 {% block title %}{{ book.title }} | {{ block.super }}{% endblock %}
 {% load static from staticfiles %}
-{% load reviews %}
 <link rel="stylesheet" href="{% static 'books/books.css' %}">
-
-{% load ratings %}
-<html>
-
-<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-
-</html>
 
 
 
@@ -37,10 +28,6 @@
                         {% if book.rating_avg %}{{ book.rating_count }} review{{ book.rating_count|pluralize }}
                         {% else %}Be the first to write a review{% endif %}</p>
                     </a>
-                    {% comment %} <html>
-                    <input type="hidden" name="next" value="{% url 'details/<int:index>/' %}" />
-                      {% render_review_form for book %}
-                  </html> {% endcomment %}
                 {% else %}
                     <p style="color: red">Coming Soon</p>
                 {% endif %}
@@ -187,8 +174,8 @@
 
             </div>
         </div>
-        
-        
+
+
         {% comment %}
         {% if book.pages > 0 and book.sales_rank > 0 %}
             <div id="book-reviews" class="row detail-content">
