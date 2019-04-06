@@ -1,4 +1,4 @@
-{% extends "bookstore/base.html" %}
+{% comment %} {% extends "bookstore/base.html" %}
 {% block title %}Checkout | {{ block.super }}{% endblock %}
 {% load static from staticfiles %}
 
@@ -37,4 +37,14 @@
     </div>
 
 
-{% endblock %}
+{% endblock %} {% endcomment %}
+
+{% comment %} {% load reviews %}
+
+
+<html>
+<input type="hidden" name="next" value="{% path('details/<int:index>/',views.book_detail_view, name='book_detail') %}" />   
+    {% render_review_form for book %}
+    {% render_review_list for book %}
+
+</html> {% endcomment %}

@@ -1,6 +1,7 @@
 {% extends "bookstore/base.html" %}
 {% block title %}{{ book.title }} | {{ block.super }}{% endblock %}
 {% load static from staticfiles %}
+{% load reviews %}
 <link rel="stylesheet" href="{% static 'books/books.css' %}">
 
 {% load ratings %}
@@ -36,6 +37,10 @@
                         {% if book.rating_avg %}{{ book.rating_count }} review{{ book.rating_count|pluralize }}
                         {% else %}Be the first to write a review{% endif %}</p>
                     </a>
+                    {% comment %} <html>
+                    <input type="hidden" name="next" value="{% url 'details/<int:index>/' %}" />
+                      {% render_review_form for book %}
+                  </html> {% endcomment %}
                 {% else %}
                     <p style="color: red">Coming Soon</p>
                 {% endif %}

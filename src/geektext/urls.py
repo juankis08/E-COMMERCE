@@ -35,6 +35,7 @@ urlpatterns = [
     path('books/', include('books.urls')),
     path('', include('bookstore.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('reviews/', include('reviews.urls')),
 ]
 
 if settings.DEBUG:
