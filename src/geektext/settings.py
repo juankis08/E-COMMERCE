@@ -32,8 +32,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
-    'crispy_forms', 
+    'crispy_forms',
+    'billing', 
+    'addresses',
+    'cards',
     'bookstore.apps.BookstoreConfig',
+    'books.apps.BooksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -129,3 +133,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home_page'
 LOGIN_URL = 'login'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'help.geektext@gmail.com'
+EMAIL_HOST_PASSWORD = 'Cuba1234'
