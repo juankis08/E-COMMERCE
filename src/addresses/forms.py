@@ -9,3 +9,13 @@ class AddressRegisterForm(forms.ModelForm):
         model = Address
         fields = ['address_type', 'address_line_1',
                   'address_line_2', 'city', 'state', 'zip_code', 'country']
+
+
+class AddressUpdateForm(forms.ModelForm):
+     email = forms.EmailField()
+
+     class Meta:
+        
+        model = Address
+        fields = ['address_line_1',
+                  'address_line_2', 'city', 'state', 'zip_code', 'country']

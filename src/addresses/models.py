@@ -10,6 +10,19 @@ ADDRESS_TYPE = (
 )
 
 
+class AddressManager(models.Manager):
+    def new_or_get(self, request):
+        user = request.user
+        created = False
+        obj = None
+        if user.is_authenticated():
+            'logged in user checkout; remember payment stuff'
+            obj, created = self.model.objects.get_or_create(
+                user=user, email=user.email)
+        else:
+            pass
+        return obj, created
+        
 class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses'
@@ -23,6 +36,8 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=120)
     country = models.CharField(max_length=120, default = 'United States of America')
 
+    objects = AddressManager()
+    
     def __str__(self):
         return f'{self.user} Address'
 

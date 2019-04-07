@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import AddressRegisterForm
+from .forms import AddressRegisterForm, AddressUpdateForm
 from django.contrib.auth.decorators import login_required
 from .models import Address
 
 # Create your views here.
 
 
-@login_required
+
 def addressregister(request):
-    Address.objects.all()
+    data = Address.objects.all()
     #if request.method == 'POST':
     form = AddressRegisterForm(request.POST or None )
     if form.is_valid():
@@ -21,4 +21,12 @@ def addressregister(request):
         return redirect('address-home')
     else:
         form = AddressRegisterForm()
-    return render(request, 'addresses/address_form.html', {'form': form})
+    context = {
+        
+        'form': form,
+        'data': data,
+    }
+    return render(request, 'addresses/address_form.html', context)
+
+
+
