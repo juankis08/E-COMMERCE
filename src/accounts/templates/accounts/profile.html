@@ -3,40 +3,80 @@
 {% block register_content %}
 
 
-<div class="container-fluid col-md-4">
+<div class="container-fluid float-left col-md-4">
     <div class="content-section">
         <div class="media">
-        <img class="rounded-circle account-img" src="{{user.profile.image.url }}">
-        
-        <div class="media-body">
-            <h2 class="account-heading">{{ accounts.username }}</h2>
-            <p class="text-secondary">{{ accounts.email }}</p>
-        </div>
+            <img class="rounded-circle account-img" src="{{user.profile.image.url }}">
+
+            <div class="media-body">
+                <h2 class="account-heading">{{ accounts.username }}</h2>
+                <p class="text-secondary">{{ accounts.email }}</p>
+            </div>
         </div>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <h5><legend class="border-botton mb-4">Profile Info</legend></h5>
+                <h5>
+                    <legend class="border-botton mb-4">Profile Info</legend>
+                </h5>
                 {{ u_form|crispy }}
                 {{ p_form|crispy }}
 
             </fieldset>
             <div class="form-group">
-                
+             
                 <button class="btn btn-outline-info" type="submit">Update</button>
-                
+
             </div>
         </form>
         <hr>
-        <div class=" " align ="center">
+        <div class=" " align="center">
             <!--<button class="btn btn-outline-info" type="submit" onclick="">Update</button>-->
             <a class="ml-2" href="{% url 'address-home' %}"> Create Billing Profile</a>
+           
+            
         </div><br>
         <hr>
         <div class=" " align="center">
             <!--<button class="btn btn-outline-info" type="submit" onclick="">Update</button>-->
             <a class="ml-2" href="{% url 'cards-home' %}"> Add Payment Method</a>
         </div><br>
+    </div>
+</div>
+
+
+<div class="card container-fluid float-left col-md-4">
+    <legend class="border-botton mb-4">Billing Address</legend>
+    <div class="card-body">
+        {{adrs|crispy}}
+               
+        <a href="#" class="btn btn-outline-info">Delete</a>
+        <a href="#" class="btn btn-outline-info">Edit</a>
+    </div>
+<hr>
+    <legend class="border-botton mb-4">Shipping Address</legend>
+    <div class="card-body">
+        
+        <p class="card-text"></p>
+        <a href="#" class="btn btn-outline-info">Delete</a>
+        <a href="#" class="btn btn-outline-info">Edit</a>
+    </div>
+</div>
+
+
+
+<div class="card container-fluid col-md-3">
+    <legend class="border-botton mb-4">Saved Cards</legend>
+    <div class="card-body">
+        <div class="icon-container">
+            <i class="fab fa-cc-visa" style="color:navy;"></i>
+            <i class="fab fa-cc-amex" style="color:blue;"></i>
+            <i class="fab fa-cc-mastercard" style="color:red;"></i>
+            <i class="fab fa-cc-discover" style="color:orange;"></i>
+            <p class="card-text"></p>
+            <a href="#" class="btn btn-outline-info">Delete</a>
+            <a href="#" class="btn btn-outline-info">Edit</a>
+        </div>
     </div>
 </div>
 

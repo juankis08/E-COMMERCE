@@ -4,9 +4,9 @@
 
 {% block register_content %}
 
-<div class="row" style="padding: 0.9rem">
+<div class="container-fluid col-md-4">
 
-    <div class="col-sm-12 col-md-4">
+    
         
         <div class="content-section">
              <form method="POST">
@@ -21,36 +21,11 @@
             </form>
         </div>   
         
-    </div>
+    
 
 
 
-<div class="col-sm-12 col-md-4">
-    <div class="content-section">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend class="border-botton mb-4">Billing Address</legend>
-                {{ form|crispy }}
-            </fieldset>
-            </form>
-    </div>
-</div>
 
-    <div class="col-sm-12 col-md-4">
-
-        <div class="content-section">
-                <form method="POST">
-                    {% csrf_token %}
-                         <fieldset class="form-group">
-                             <legend class="border-botton mb-4">Shipping Address</legend>
-                                {{ form|crispy }}
-                        </fieldset>
-                 </form>
-        
-        </div>
-
-    </div>
 
 </div>
 

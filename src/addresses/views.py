@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import AddressRegisterForm, AddressUpdateForm
+from addresses.forms import AddressRegisterForm, AddressUpdateForm
 from django.contrib.auth.decorators import login_required
 from .models import Address
+from django.forms.models import model_to_dict
 
 # Create your views here.
 
@@ -27,6 +28,5 @@ def addressregister(request):
         'data': data,
     }
     return render(request, 'addresses/address_form.html', context)
-
 
 

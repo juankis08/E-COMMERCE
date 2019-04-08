@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import CardsRegisterForm
 from django.contrib.auth.decorators import login_required
 from .models import Cards
-
+from cards.forms import CardsRegisterForm
 # Create your views here.
 
 
