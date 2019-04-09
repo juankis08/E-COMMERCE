@@ -4,8 +4,10 @@
 
 {% block register_content %}
 
+
 <div class="container-fluid col-md-4">
-    <div class="content-section">
+    
+        <div class="content-section ">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -16,12 +18,9 @@
                 <button class="btn btn-outline-info" type="submit">Add Card</button>
             </div>
         </form>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                Need to add another card? <a class="ml-2" href="{% url 'address-home' %}">Add card</a>
-            </small>
+        
         </div>
-    </div>
+    
 </div>
 
 {% endblock register_content %}
