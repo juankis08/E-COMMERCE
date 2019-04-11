@@ -1,50 +1,19 @@
-{% comment %} {% extends "bookstore/base.html" %}
-{% block title %}Checkout | {{ block.super }}{% endblock %}
+{% extends "bookstore/base.html" %}
+{% block title %}{{ book.title }} | {{ block.super }}{% endblock %}
 {% load static from staticfiles %}
 
-
-{% block content %}
-
-    <div class="container-fluid">
-        <div class="col-md-6 col-xs-4 col-md-offset-4">
-            <h3>Leave a comment for {{ book.title }}!</h3><br>
-        </div>
-
-    <form method="POST" class="post-form">
-        {% csrf_token %}
-        <div class="col-md-4 col-xs-4 col-md-offset-4">
-            <div class="form-group">
-
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <h4>Comment</h4>
-                    </div>
-
-                    <div class="panel-body">
-                        {{ form.text }}
-                    </div>
-
-                </div>
-                <div class="col-md-6 col-xm-3 col-md-offset-2">
-                    <button type="submit" class="btn btn-orange">Save</button>
-                </div>
-            </div>{# end of form-group #}
-        </div>
-
-
+{% comment %} {% block content %}
+    <h1>New comment</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Write Review</button>
     </form>
-    
-    </div>
-
-
 {% endblock %} {% endcomment %}
+{% block content %}
+<h1>Add a Review</h1>
+<form method='POST'>{% csrf_token %}
+{{form.as_p}}
+<button type='submit'>Submit</button>
+</form>
 
-{% comment %} {% load reviews %}
-
-
-<html>
-<input type="hidden" name="next" value="{% path('details/<int:index>/',views.book_detail_view, name='book_detail') %}" />   
-    {% render_review_form for book %}
-    {% render_review_list for book %}
-
-</html> {% endcomment %}
+{% endblock %}

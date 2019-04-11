@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from accounts import views as user_views
 from accounts.views import guest_register_view
+#from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +36,10 @@ urlpatterns = [
     path('books/', include('books.urls')),
     path('', include('bookstore.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
-    path('reviews/', include('reviews.urls')),
+    #path('reviews/', include('reviews.urls')),
+    #path('book/<int:pk>/comment/', views.add_review_to_book, name='add_review_to_book'),
+    #path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
+    #path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
 ]
 
 if settings.DEBUG:

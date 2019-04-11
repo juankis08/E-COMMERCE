@@ -1,7 +1,7 @@
 {% extends "bookstore/base.html" %}
 {% block title %}{{ book.title }} | {{ block.super }}{% endblock %}
 {% load static from staticfiles %}
-{% load reviews %}
+{% comment %} {% load reviews %} {% endcomment %}
 <link rel="stylesheet" href="{% static 'books/books.css' %}">
 
 {% load ratings %}
@@ -33,14 +33,42 @@
                 </p>
                 {% if book.pages > 0 and book.sales_rank > 0 %}
                     {% include 'book_rating.html' %}
-                    <a href="#book-reviews"><p class="detail-content" style="padding-bottom: 20px;">
+                    {% comment %} <a href="#book-reviews"><p class="detail-content" style="padding-bottom: 20px;">
                         {% if book.rating_avg %}{{ book.rating_count }} review{{ book.rating_count|pluralize }}
                         {% else %}Be the first to write a review{% endif %}</p>
-                    </a>
+                    </a> {% endcomment %}
                     {% comment %} <html>
                     <input type="hidden" name="next" value="{% url 'details/<int:index>/' %}" />
                       {% render_review_form for book %}
                   </html> {% endcomment %}
+                  <hr>
+                  <a class="btn btn-default" href="{% url 'add_review_to_book' pk=book.pk %}">Add a Review</a>
+                  {% comment %} {% for comment in book.comments.all %}
+                      <div class="comment">
+                          <div class="date">{{ comment.created_date }}</div>
+                          <strong>{{ comment.author }}</strong>
+                          <p>{{ comment.text|linebreaks }}</p>
+                      </div>
+                  {% empty %}
+                      <p>No reviews here yet :(</p>
+                  {% endfor %} {% endcomment %}
+                  {% for comment in book.comments.all %}
+                      {% if user.is_authenticated or comment.approved_comment %}
+                      <div class="comment">
+                          <div class="date">
+                              {{ comment.created_date }}
+                              {% if not comment.approved_comment %}
+                                  <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                                  <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                              {% endif %}
+                          </div>
+                          <strong>{{ comment.author }}</strong>
+                          <p>{{ comment.text|linebreaks }}</p>
+                      </div>
+                      {% endif %}
+                  {% empty %}
+                      <p>No comments here yet :(</p>
+                  {% endfor %}
                 {% else %}
                     <p style="color: red">Coming Soon</p>
                 {% endif %}
