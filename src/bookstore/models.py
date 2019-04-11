@@ -45,7 +45,8 @@ class Book(models.Model):
     description = models.TextField(max_length=600, null=True, blank=True)
     image = models.FileField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=5, default=0)
-    publication_date = models.CharField(max_length=12, null=True, blank=True)
+    #changed publication date from Chart field to date Field
+    publication_date = models.DateField(blank=True, null=True)
     genre = models.CharField(max_length=50, blank=True, null=True)
     pages = models.IntegerField(default=0)
     avg_rating = models.DecimalField(decimal_places=1, max_digits=2, default=0)
