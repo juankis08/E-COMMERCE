@@ -275,7 +275,7 @@ def refined_view(request):
 
 
         if date:
-            books = Book.objects.filter(publication_date=date)
+            books = Book.objects.filter(publication_date2=date)
 
         for item in books:
             if title:

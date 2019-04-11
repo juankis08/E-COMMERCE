@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Avg
 from django.utils.timezone import now
-
+import datetime
 
 # Create your models here.
 class Publisher(models.Model):
@@ -45,8 +45,8 @@ class Book(models.Model):
     description = models.TextField(max_length=600, null=True, blank=True)
     image = models.FileField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=5, default=0)
-    #changed publication date from Chart field to date Field
-    publication_date = models.DateField(blank=True, null=True)
+    publication_date = models.CharField(max_length=12, null=True, blank=True)
+    publication_date2 = models.DateField(default=datetime.date.today)
     genre = models.CharField(max_length=50, blank=True, null=True)
     pages = models.IntegerField(default=0)
     avg_rating = models.DecimalField(decimal_places=1, max_digits=2, default=0)
