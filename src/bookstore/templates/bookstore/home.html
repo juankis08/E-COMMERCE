@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-footer">
                  <a href="/books/details/{{i.id}}"> Details</a>
-                 <a href="#" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                 {% include 'update-cart.html' with product=i cart=cart %}
                 </div>
               </div>
             </div>
