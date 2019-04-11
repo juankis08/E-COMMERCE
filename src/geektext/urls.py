@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from accounts import views as user_views
 from accounts.views import guest_register_view
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,7 @@ urlpatterns = [
     path('', include('bookstore.urls')),
     path('addresses/', include('addresses.urls')),
     path('cards/', include('cards.urls')),
+    url('cart/', include("carts.urls", namespace='cart')),
 ]
 
 if settings.DEBUG:
