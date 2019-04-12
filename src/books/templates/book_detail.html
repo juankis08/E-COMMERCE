@@ -13,7 +13,6 @@
 </html>
 
 
-
 {% block home_content %}
     <div class="container">
         
@@ -42,7 +41,9 @@
                       {% render_review_form for book %}
                   </html> {% endcomment %}
                   <hr>
+                  {% if user.is_authenticated %}
                   <a class="btn btn-default" href="{% url 'add_review_to_book' pk=book.pk %}">Add a Review</a>
+                  {% endif %}
                   {% comment %} {% for comment in book.comments.all %}
                       <div class="comment">
                           <div class="date">{{ comment.created_date }}</div>

@@ -377,8 +377,9 @@ def add_review_to_book(request, pk):
              #comment.post = post
              comment.book = book
              comment.save()
-             return redirect('book_detail.html', pk=book.pk)
+             return redirect('/books/details/'+str(book.pk))
      else:
+         print ("hello")
          form = CommentForm()
     #return render(request, 'book_review.html', {'book': book})
      return render(request, "book_add_review.html", {'form': form})
