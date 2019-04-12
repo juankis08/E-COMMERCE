@@ -387,38 +387,23 @@ def sorted_book(request):
         context = {'book_by_page': book_by_page,'value':value}
         return render(request, 'book_list.html', context)
 
-def add_review_to_book(request, pk):
+def add_review_to_book(request, pk, anon):
      book = get_object_or_404(Book, pk=pk)
      if request.method == "POST":
          form = CommentForm(request.POST)
          if form.is_valid():
              comment = form.save(commit=False)
-             #comment.post = post
              comment.book = book
+             if anon=='True':
+                 comment.author = "anonymous"
+             else:
+                comment.author = request.user.username
              comment.save()
              return redirect('/books/details/'+str(book.pk))
      else:
          print ("hello")
          form = CommentForm()
-    #return render(request, 'book_review.html', {'book': book})
      return render(request, "book_add_review.html", {'form': form})
-
-# def add_review_to_book(request, pk):
-#     book = get_object_or_404(Book, pk=pk)
-#     if request.method == "POST":
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             #comment.post = post
-#             comment.book = book
-#             comment.save()
-#             return redirect('book_detail', pk=book.pk)
-#     else:
-#         form = CommentForm()
-#         template = 'book_add_review.html'
-#         context = {'form':form}
-#     #return render(request, 'book_review.html', {'book': book})
-#     return render(request, template, context)
 
 @login_required
 def comment_approve(request, pk):

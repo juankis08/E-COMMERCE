@@ -12,6 +12,7 @@ Web application bookstore
   <li>pip install Django==2.1.5</li>
   <li>pip install django-crispy-forms</li>
   <li>pip install Pillow</li>
+  <li>pip install django-star-ratings</li>
 </ul>
 
  <h6>Helpful Commands</h6> 

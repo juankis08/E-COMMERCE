@@ -27,7 +27,9 @@
 
                   <hr>
                   {% if user.is_authenticated %}
-                  <a class="btn btn-default" href="{% url 'add_review_to_book' pk=book.pk %}">Add a Review</a>
+                  <a class="btn btn-default" href="{% url 'add_review_to_book' pk=book.pk anon='True' %}">Add Anonymous Review</a>
+                  <a class="btn btn-default" href="{% url 'add_review_to_book' pk=book.pk anon='False'%}">Add a Review</a>
+
                   {% endif %}
 
                   {% for comment in book.comments.all %}
