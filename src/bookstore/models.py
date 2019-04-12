@@ -46,12 +46,13 @@ class Book(models.Model):
     image = models.FileField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=5, default=0)
     publication_date = models.CharField(max_length=12, null=True, blank=True)
-    publication_date2 = models.DateField(default=datetime.date.today)
     genre = models.CharField(max_length=50, blank=True, null=True)
     pages = models.IntegerField(default=0)
     avg_rating = models.DecimalField(decimal_places=1, max_digits=2, default=0)
     sales_rank = models.IntegerField(default=0)
     top_sellers = models.BooleanField(default=False)
+
+    publication_date2 = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.title
