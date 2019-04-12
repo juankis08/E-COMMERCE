@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 from django.views import generic
 from .models import Book,Author
+from accounts.models import WishList, WishListNames
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
@@ -243,9 +244,17 @@ def book_list_view(request):
 
 
 def book_detail_view(request, index):
+    wishlist_names = WishListNames.objects.all()
+    wishlist_names_d = {}
+    for w in wishlist_names:
+        wishlist_names_d[w.wishlist_num] = w
+
+    author = Author.objects.filter(book=index).distinct()
+    book_authors = Book.objects.filter(authors__book__authors__in=author).distinct()
     for book in Book.objects.all():
+        
         if str(book.id) == str(index):
-            return render(request, 'book_detail.html', {'book': book})
+            return render(request, 'book_detail.html', {'book': book, 'author':author, 'author_books':book_authors, 'wishlists': wishlist_names_d})
 
 
 def refined_view(request):

@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, GuestForm
 from  django.utils.http import is_safe_url
 from .models import GuestEmail
+from django.contrib.auth.models import User
+from django.conf import settings
+from addresses.models import Address
 
 def register(request):
     if request.method == 'POST':
@@ -58,5 +61,14 @@ def guest_register_view(request):
         else:
             return redirect("/register/")
     return render(request, "accounts/register.html", context)
+
+def address_get(request):
+    User = settings.AUTH_USER_MODEL
+    instance = request.user.username
+    user = User.objects.get(instance)
+    adrs = Address.objects.filter(user=user)
+    print ("this is the address",adrs)
+    
+    return render(request, 'accounts/profile.html', {'adrs': adrs})
 
 

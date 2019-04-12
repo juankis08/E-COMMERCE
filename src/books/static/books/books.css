@@ -74,6 +74,47 @@ ul {
     list-style-type: none;
   }
 
+  /* .card-img-top{
+    height: 350px; width: 230px;
+  } */
+  /* .carousel-inner{
+    position: relative; 
+    width: 100%; 
+    height: 50%;
+    overflow: hidden;
+      
+   } */
+
+
+  /* .text_carousel{
+    text-align: center; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left:auto; 
+    margin-right:0;
+    text-decoration: none; 
+    float: right;
+    color: inherit;
+    display: flex; justify-content: flex-end;
+    padding-top: 5px;
+    white-space: normal; 
+    
+  } */
+
+
+  .text_carousel{
+    vertical-align: top;
+    text-align: left;
+    overflow: hidden;
+    margin-left: 16px;
+    width: 160px;
+    min-height: 100%;
+    list-style-type: none;
+    display: inline-block;
+    white-space: normal;
+    letter-spacing: normal;
+  }
+  
 .carousel-control.left,.carousel-control.right {background-image:none;}
 /* End carousel */
 
@@ -86,6 +127,18 @@ ul {
     position: absolute;
   }
 
+
+  /* image zoom on CAROUSEL  */
+  .zoom_carousel img{
+    transition: transform .2s
+}
+
+.zoom_carousel:hover {
+    transform: scale(1.5); 
+    z-index: 100;
+    position: relative;
+   
+  }
 
   .carousel-with-lb {
     width:340px;
@@ -110,6 +163,7 @@ ul {
 
 .carousel-inner mdb-lightbox{
     text-align: left !important; 
+    background-color:lavender;
 }
 
 .carousel-item active text-center{

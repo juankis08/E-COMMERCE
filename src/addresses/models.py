@@ -1,5 +1,7 @@
 from django.db import models
-from billing.models import BillingProfile
+from accounts.models import Profile
+from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 ADDRESS_TYPE = (
@@ -8,8 +10,24 @@ ADDRESS_TYPE = (
 )
 
 
+class AddressManager(models.Manager):
+    def new_or_get(self, request):
+        user = request.user
+        created = False
+        obj = None
+        if user.is_authenticated():
+            'logged in user checkout; remember payment stuff'
+            obj, created = self.model.objects.get_or_create(
+                user=user, email=user.email)
+        else:
+            pass
+        return obj, created
+        
 class Address(models.Model):
-    billing_profile = models.ForeignKey(BillingProfile, on_delete = models.CASCADE)
+    class Meta:
+        verbose_name_plural = 'Addresses'
+    User = settings.AUTH_USER_MODEL
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     address_type = models.CharField(max_length=120, choices= ADDRESS_TYPE)
     address_line_1 = models.CharField(max_length=120)
     address_line_2 = models.CharField(max_length= 120, null =True, blank = True)
@@ -18,8 +36,11 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=120)
     country = models.CharField(max_length=120, default = 'United States of America')
 
+    objects = AddressManager()
+    
     def __str__(self):
-        return str(self.billing_profile)
+        return f'{self.user} Address'
 
+    
 
 

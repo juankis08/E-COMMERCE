@@ -6,6 +6,8 @@ from django.db import models
 from django.utils import timezone
 import datetime
 
+#from accounts.models import Profile
+
 
 # Create your models here.
 class Publisher(models.Model):
@@ -84,6 +86,7 @@ class Book(models.Model):
 class Comment(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
     author = models.CharField(max_length=200)
+    #author = models.OneToOneField(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)

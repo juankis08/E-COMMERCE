@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'billing', 
     'addresses',
+    'cards',
     'bookstore.apps.BookstoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
@@ -45,8 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'star_ratings',
     'django.contrib.sites',
-    #'reviews',
-    #'django_comments',
+    'carts.apps.CartsConfig',
 ]
 
 MIDDLEWARE = [
