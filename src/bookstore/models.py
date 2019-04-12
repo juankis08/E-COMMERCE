@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Avg
 from django.utils.timezone import now
-
+import datetime
 
 # Create your models here.
 class Publisher(models.Model):
@@ -51,6 +51,8 @@ class Book(models.Model):
     avg_rating = models.DecimalField(decimal_places=1, max_digits=2, default=0)
     sales_rank = models.IntegerField(default=0)
     top_sellers = models.BooleanField(default=False)
+
+    publication_date2 = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.title

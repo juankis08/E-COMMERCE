@@ -243,6 +243,8 @@ def book_list_view(request):
 def book_detail_view(request, index):
     wishlist_names = WishListNames.objects.all()
     wishlist_names_d = {}
+
+
     for w in wishlist_names:
         wishlist_names_d[w.wishlist_num] = w
 
@@ -251,12 +253,16 @@ def book_detail_view(request, index):
     for book in Book.objects.all():
         
         if str(book.id) == str(index):
+
             return render(request, 'book_detail.html', {'book': book, 'author':author, 'author_books':book_authors, 'wishlists': wishlist_names_d})
 
 
 def refined_view(request):
     books = Book.objects.all()
     authors = Author.objects.all()
+
+
+
     if request.method == 'POST':
         title = request.POST.get('title')
         author = request.POST.get('author')
@@ -264,7 +270,12 @@ def refined_view(request):
         price_min = request.POST.get('price_min')
         price_max = request.POST.get('price_max')
         rating = request.POST.get('rating')
+        date = request.POST.get('date')
         search_result = []
+
+
+        if date:
+            books = Book.objects.filter(publication_date2=date)
 
         for item in books:
             if title:
@@ -317,7 +328,6 @@ def refined_view(request):
             for item in search_result:
                 temp_list.append(item.id)
             request.session['book_list'] = temp_list
-
 
         page = request.GET.get('page', 1)
 
