@@ -4,8 +4,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils import timezone
 from django.views import generic
 from .models import Book,Author
+from accounts.models import WishList, WishListNames
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.urls import reverse
+from random import shuffle
+from .forms import CommentForm
+from .models import Book, Comment
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -188,6 +194,7 @@ class BookDetailView(generic.DetailView):
 def book_list_view(request):
     books = Book.objects.all()
     authors = Author.objects.all()
+    temp_list = []
     if request.method == 'POST':
         search_book = request.POST.get('book-field')
         search_result = []
@@ -201,6 +208,129 @@ def book_list_view(request):
         if not search_result:
             messages.info(request, 'No match found..!')
 
+        for item in search_result:
+            temp_list.append(item.id)
+        request.session['book_list'] = temp_list
+
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(search_result, 12)
+        try:
+            book_by_page = paginator.page(page)
+        except PageNotAnInteger:
+            book_by_page = paginator.page(1)
+        except EmptyPage:
+            book_by_page = paginator.page(paginator.num_pages)
+
+        context = {'book_by_page': book_by_page}
+        return render(request, 'book_list.html', context)
+
+    for item in books:
+        temp_list.append(item.id)
+    request.session['book_list'] = temp_list
+
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(books, 12)
+    try:
+        book_by_page = paginator.page(page)
+    except PageNotAnInteger:
+        book_by_page = paginator.page(1)
+    except EmptyPage:
+        book_by_page = paginator.page(paginator.num_pages)
+
+    context = {'book_by_page': book_by_page}
+    return render(request, 'book_list.html', context)
+
+
+def book_detail_view(request, index):
+    wishlist_names = WishListNames.objects.all()
+    wishlist_names_d = {}
+
+
+    for w in wishlist_names:
+        wishlist_names_d[w.wishlist_num] = w
+
+    author = Author.objects.filter(book=index).distinct()
+    book_authors = Book.objects.filter(authors__book__authors__in=author).distinct()
+    for book in Book.objects.all():
+        
+        if str(book.id) == str(index):
+
+            return render(request, 'book_detail.html', {'book': book, 'author':author, 'author_books':book_authors, 'wishlists': wishlist_names_d})
+
+
+def refined_view(request):
+    books = Book.objects.all()
+    authors = Author.objects.all()
+
+
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        genre = request.POST.get('genre')
+        price_min = request.POST.get('price_min')
+        price_max = request.POST.get('price_max')
+        rating = request.POST.get('rating')
+        date = request.POST.get('date')
+        search_result = []
+
+
+        if date:
+            books = Book.objects.filter(publication_date2=date)
+
+        for item in books:
+            if title:
+                if title.lower() in item.title.lower():
+                    title_flag = 1
+                else:
+                    title_flag = 0
+            else:
+                title_flag = 1
+
+            if author:
+                author_flag = 0
+                for auth in item.authors.all():
+                    if author.lower() in auth.full_name.lower():
+                        author_flag = 1
+            else:
+                author_flag = 1
+
+            if genre:
+                if genre.lower() in item.genre.lower():
+                    genre_flag = 1
+                else:
+                    genre_flag = 0
+            else:
+                genre_flag = 1
+
+            if price_min and price_max:
+                if float(price_min) <= item.price <= float(price_max):
+                    price_flag = 1
+                else:
+                    price_flag = 0
+            else:
+                price_flag = 1
+
+            if rating:
+                if float(rating) <= item.avg_rating:
+                    rating_flag = 1
+                else:
+                    rating_flag = 0
+            else:
+                rating_flag = 1
+
+            if title_flag == 1 and author_flag == 1 and genre_flag == 1 and price_flag == 1 and rating_flag == 1:
+                search_result.append(item)
+
+        if not search_result:
+            messages.info(request, 'No match found..!')
+        else:
+            temp_list = []
+            for item in search_result:
+                temp_list.append(item.id)
+            request.session['book_list'] = temp_list
 
         page = request.GET.get('page', 1)
 
@@ -229,7 +359,60 @@ def book_list_view(request):
     return render(request, 'book_list.html', context)
 
 
-def book_detail_view(request, index):
-    for book in Book.objects.all():
-        if str(book.id) == str(index):
-            return render(request, 'book_detail.html', {'book': book})
+def sorted_book(request):
+    if request.method == 'POST':
+        value = request.POST.get('sort_values')
+        book_list = []
+        list = request.session['book_list']
+        for x in list:
+            for item in Book.objects.all():
+                if item.id == x:
+                    book_list.append(item)
+        if value == 'low':
+            book_list.sort(key=lambda x: x.price, reverse=False)
+        elif value == 'high':
+            book_list.sort(key=lambda x: x.price, reverse=True)
+        else:
+            shuffle(book_list)
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(book_list, 12)
+        try:
+            book_by_page = paginator.page(page)
+        except PageNotAnInteger:
+            book_by_page = paginator.page(1)
+        except EmptyPage:
+            book_by_page = paginator.page(paginator.num_pages)
+
+        context = {'book_by_page': book_by_page,'value':value}
+        return render(request, 'book_list.html', context)
+
+def add_review_to_book(request, pk, anon):
+     book = get_object_or_404(Book, pk=pk)
+     if request.method == "POST":
+         form = CommentForm(request.POST)
+         if form.is_valid():
+             comment = form.save(commit=False)
+             comment.book = book
+             if anon=='True':
+                 comment.author = "anonymous"
+             else:
+                comment.author = request.user.username
+             comment.save()
+             return redirect('/books/details/'+str(book.pk))
+     else:
+         print ("hello")
+         form = CommentForm()
+     return render(request, "book_add_review.html", {'form': form})
+
+@login_required
+def comment_approve(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('book_detail', pk=comment.book.pk)
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('book_detail', pk=comment.book.pk)

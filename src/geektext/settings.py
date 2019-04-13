@@ -32,7 +32,10 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
-    'crispy_forms', 
+    'crispy_forms',
+    'billing', 
+    'addresses',
+    'cards',
     'bookstore.apps.BookstoreConfig',
     'books.apps.BooksConfig',
     'django.contrib.admin',
@@ -41,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'star_ratings',
+    'django.contrib.sites',
+    'carts.apps.CartsConfig',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        #'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,3 +146,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'help.geektext@gmail.com'
 EMAIL_HOST_PASSWORD = 'Cuba1234'
+
+SITE_ID = 1
