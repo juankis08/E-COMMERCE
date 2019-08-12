@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.urls import reverse
 from random import shuffle
-
+from carts.models import Cart
 
 
 class AllAuthorsView(generic.TemplateView):

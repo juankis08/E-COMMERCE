@@ -38,9 +38,14 @@
                 <h3 class="detail-content" style="padding-bottom: 25px;">Paperback</h3>
                 <h3>${{ book.price }}</h3>
                 {% if book.pages > 0 and book.sales_rank > 0 %}
-                    <a href="#">
-                        <button class="btn btn-success">Add To Cart</button>
-                    </a>
+                <div class ='col-12 col-md-6'>   
+
+                        
+                        {% include 'update-cart.html' with product=book cart=cart %}
+                        <br>
+                        {% include 'save-items.html' with product=book save=cart %}
+                        
+                </div>
                 {% endif %}
                 <br/><br/>
                 {% if user.is_authenticated %}

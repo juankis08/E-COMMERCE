@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Avg
 from django.utils.timezone import now
-
+from django.db.models import Q
 
 # Create your models here.
 class Publisher(models.Model):
@@ -17,6 +17,42 @@ class Publisher(models.Model):
 
     class Meta:
         ordering = ['name']
+
+# # for shopping cart
+class ProductQuerySet(models.query.QuerySet):
+    def active(self):
+        return self.filter(active=True)
+
+    def featured(self):
+        return self.filter(featured=True, active=True)
+
+    def search(self, query):
+        lookups = (Q(title__icontains=query) | 
+                  Q(description__icontains=query) |
+                  Q(price__icontains=query) |
+                  Q(tag__title__icontains=query)
+                  )
+        # tshirt, t-shirt, t shirt, red, green, blue,
+        return self.filter(lookups).distinct()
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return ProductQuerySet(self.model, using=self._db)
+
+    def all(self):
+        return self.get_queryset().active()
+
+    def featured(self): #Product.objects.featured() 
+        return self.get_queryset().featured()
+
+    def get_by_id(self, id):
+        qs = self.get_queryset().filter(id=id) # Product.objects == self.get_queryset()
+        if qs.count() == 1:
+            return qs.first()
+        return None
+
+    def search(self, query):
+        return self.get_queryset().active().search(query)
 
 
 class Author(models.Model):
@@ -51,12 +87,17 @@ class Book(models.Model):
     avg_rating = models.DecimalField(decimal_places=1, max_digits=2, default=0)
     sales_rank = models.IntegerField(default=0)
     top_sellers = models.BooleanField(default=False)
+    active      = models.BooleanField(default=True)
+    objects = ProductManager()
 
     def __str__(self):
         return self.title
 
     # def __str__(self):
     #     return self.title
+
+    def get_url(self):
+        return "/books/details/%s/" % self.id
 
     def get_absolute_url(self):
         return "/book/%s/" % self.id
