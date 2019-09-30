@@ -44,9 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'star_ratings',
-    'django.contrib.sites',
-    'carts.apps.CartsConfig',
+    'carts',
+    'saveitems',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +64,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        #'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -147,4 +145,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'help.geektext@gmail.com'
 EMAIL_HOST_PASSWORD = 'Cuba1234'
 
-SITE_ID = 1
+
+
+STRIPE_SECRET_KEY = 'sk_test_IMXUUwv4rZJlnYOYJyG4e8MW002CFkjD6x'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_ldCib3RvjlYHk3SOpcyjat8V00NjO9JE3A'

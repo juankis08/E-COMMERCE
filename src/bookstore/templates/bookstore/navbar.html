@@ -26,8 +26,11 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <a class="nav-link" href='{% url "cart:home" %}'><i class="fas fa-shopping-cart"></i> Cart {{ request.session.cart_items }}</a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link" href='{% url "save:home" %}'><i class="fas fa-heart" style ="color: blue"></i>  {{ request.session.cart_save }}</a>
+                    </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i>

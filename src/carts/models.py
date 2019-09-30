@@ -1,11 +1,12 @@
+# shopping cart version 
 from django.db import models
 
 # Create your models here.
 from django.db import models
 from django.conf import settings
 from books.models import Book
-from django.db.models.signals import pre_save, post_save
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import pre_save, post_save, m2m_changed
+
  
 
 User = settings.AUTH_USER_MODEL
@@ -21,7 +22,7 @@ class CartManager(models.Manager):
                 cart_obj.user = request.user
                 cart_obj.save()
         else: 
-            cart_obj = self.new(user=request.user)  #create a new one 
+            cart_obj = Cart.objects.new(user=request.user)  #create a new one 
             new_obj = True
             request.session['cart_id'] = cart_obj.id # and start a new section
         return cart_obj, new_obj #return the car and whether or not is new
@@ -29,7 +30,7 @@ class CartManager(models.Manager):
         user_obj = None
         if user is not None:
             #if user.is_authenticated():
-            user_obj = user
+                user_obj = user
         return self.model.objects.create(user=user_obj)
 
 # create fields
@@ -64,7 +65,7 @@ m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
 # calculate total
 def pre_save_cart_receiver(sender, instance, *arg, **kwargs):
     if instance.subtotal > 0:
-        instance.total = instance.subtotal + 10
+        instance.total = instance.subtotal + 10 # adding taxes
     else:
         instance.total = 0.00
 pre_save.connect(pre_save_cart_receiver, sender=Cart)

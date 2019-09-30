@@ -61,8 +61,10 @@
                   <p class="card-text"></p>
                 </div>
                 <div class="card-footer">
-                 <a href="/books/details/{{i.id}}"> Details</a>
+
+                 <a href="/books/details/{{i.id}}" > Details </a>
                  {% include 'update-cart.html' with product=i cart=cart %}
+                 {% include 'save-items.html' with product=i save=cart %}
                 </div>
               </div>
             </div>
